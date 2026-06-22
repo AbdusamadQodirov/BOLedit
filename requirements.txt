@@ -1,0 +1,7 @@
+python-telegram-bot==21.4
+PyMuPDF==1.27.2
+pillow
+pytesseract
+anthropic
+opencv-python-headless
+numpy
