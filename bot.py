@@ -244,10 +244,12 @@ async def receive_file(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if use_vision:
         try:
             vision_candidates = find_vision_candidates(page_img)
-        except RuntimeError as e:
+        except Exception as e:
+            import logging
+            logging.getLogger(__name__).error(f"Vision xatosi: {type(e).__name__}: {e}")
             await update.message.reply_text(
-                f"Avtomatik aniqlashda xatolik: {e}\n"
-                "ANTHROPIC_API_KEY sozlanmagan bo'lishi mumkin."
+                f"Avtomatik aniqlashda xatolik: {type(e).__name__}: {e}\n"
+                "Iltimos, keyinroq urinib ko'ring."
             )
             if not ocr_candidates:
                 return WAITING_FILE
